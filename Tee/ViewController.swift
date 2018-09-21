@@ -28,7 +28,8 @@ class ViewController: UIViewController {
                                       AVMetadataObject.ObjectType.itf14,
                                       AVMetadataObject.ObjectType.dataMatrix,
                                       AVMetadataObject.ObjectType.interleaved2of5,
-                                      AVMetadataObject.ObjectType.qr]
+                                      AVMetadataObject.ObjectType.qr
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
