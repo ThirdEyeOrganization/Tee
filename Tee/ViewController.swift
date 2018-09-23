@@ -38,11 +38,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         // Get the back-facing camera for capturing videos
-<<<<<<< HEAD
-        let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInDualCamera], mediaType: AVMediaType.video, position: .back)
-=======
         let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .back)
->>>>>>> 1be4d231cbf58614da7085c11e665dddfcdd1c28
         
         guard let captureDevice = deviceDiscoverySession.devices.first else {
             print("Failed to get the camera device")
