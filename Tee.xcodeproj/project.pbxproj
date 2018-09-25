@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04404BAAE2905D0673D95291 /* Pods_TeeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5EDC26F434264A12190B902 /* Pods_TeeUITests.framework */; };
+		1B84F85F475C115D3C31ECC6 /* Pods_Tee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43390759D8921B99273EF2A7 /* Pods_Tee.framework */; };
+		1C660EC5215ACF6800E7BD7D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1C660EC4215ACF6800E7BD7D /* GoogleService-Info.plist */; };
+		1C660EC6215ACF6800E7BD7D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1C660EC4215ACF6800E7BD7D /* GoogleService-Info.plist */; };
+		1C660EC7215ACF6800E7BD7D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1C660EC4215ACF6800E7BD7D /* GoogleService-Info.plist */; };
 		1C6BADB72154B04700C08D20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6BADB62154B04700C08D20 /* AppDelegate.swift */; };
 		1C6BADB92154B04700C08D20 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6BADB82154B04700C08D20 /* ViewController.swift */; };
 		1C6BADBC2154B04700C08D20 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C6BADBA2154B04700C08D20 /* Main.storyboard */; };
@@ -15,6 +20,7 @@
 		1C6BADC42154B04800C08D20 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C6BADC22154B04800C08D20 /* LaunchScreen.storyboard */; };
 		1C6BADCF2154B04800C08D20 /* TeeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6BADCE2154B04800C08D20 /* TeeTests.swift */; };
 		1C6BADDA2154B04800C08D20 /* TeeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6BADD92154B04800C08D20 /* TeeUITests.swift */; };
+		E86809476355DE0510294DE2 /* Pods_TeeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A065F6E7FE4AE375F0B3A69A /* Pods_TeeTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		13DA9E18857C6FE6D54EFB3A /* Pods-Tee.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tee.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tee/Pods-Tee.release.xcconfig"; sourceTree = "<group>"; };
+		1C660EC4215ACF6800E7BD7D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1C6BADB32154B04700C08D20 /* Tee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C6BADB62154B04700C08D20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C6BADB82154B04700C08D20 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +57,14 @@
 		1C6BADD52154B04800C08D20 /* TeeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C6BADD92154B04800C08D20 /* TeeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeeUITests.swift; sourceTree = "<group>"; };
 		1C6BADDB2154B04800C08D20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1D3F8DDD349873FBF1C40D25 /* Pods-TeeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TeeTests/Pods-TeeTests.release.xcconfig"; sourceTree = "<group>"; };
+		2838D8E17F739759A8F20016 /* Pods-TeeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TeeUITests/Pods-TeeUITests.release.xcconfig"; sourceTree = "<group>"; };
+		43390759D8921B99273EF2A7 /* Pods_Tee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A065F6E7FE4AE375F0B3A69A /* Pods_TeeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBE9DE03046FE6C6EC27F043 /* Pods-TeeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TeeTests/Pods-TeeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		EAB61DBD0567BDAADEB35156 /* Pods-Tee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tee.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tee/Pods-Tee.debug.xcconfig"; sourceTree = "<group>"; };
+		F5EDC26F434264A12190B902 /* Pods_TeeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAD7D2B5E8D91A2A120C51D6 /* Pods-TeeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeeUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TeeUITests/Pods-TeeUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B84F85F475C115D3C31ECC6 /* Pods_Tee.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E86809476355DE0510294DE2 /* Pods_TeeTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +88,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04404BAAE2905D0673D95291 /* Pods_TeeUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C660EC3215ACF1D00E7BD7D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1C660EC4215ACF6800E7BD7D /* GoogleService-Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		1C6BADAA2154B04700C08D20 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +110,9 @@
 				1C6BADCD2154B04800C08D20 /* TeeTests */,
 				1C6BADD82154B04800C08D20 /* TeeUITests */,
 				1C6BADB42154B04700C08D20 /* Products */,
+				1C660EC3215ACF1D00E7BD7D /* Supporting Files */,
+				D55079A986FACE0E42EC38AB /* Pods */,
+				7382D944C8DD0C43680C4701 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -128,6 +158,29 @@
 			path = TeeUITests;
 			sourceTree = "<group>";
 		};
+		7382D944C8DD0C43680C4701 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				43390759D8921B99273EF2A7 /* Pods_Tee.framework */,
+				A065F6E7FE4AE375F0B3A69A /* Pods_TeeTests.framework */,
+				F5EDC26F434264A12190B902 /* Pods_TeeUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D55079A986FACE0E42EC38AB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EAB61DBD0567BDAADEB35156 /* Pods-Tee.debug.xcconfig */,
+				13DA9E18857C6FE6D54EFB3A /* Pods-Tee.release.xcconfig */,
+				CBE9DE03046FE6C6EC27F043 /* Pods-TeeTests.debug.xcconfig */,
+				1D3F8DDD349873FBF1C40D25 /* Pods-TeeTests.release.xcconfig */,
+				FAD7D2B5E8D91A2A120C51D6 /* Pods-TeeUITests.debug.xcconfig */,
+				2838D8E17F739759A8F20016 /* Pods-TeeUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +188,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1C6BADDE2154B04800C08D20 /* Build configuration list for PBXNativeTarget "Tee" */;
 			buildPhases = (
+				7BA5A7AD0D2695B7ADA4B3D4 /* [CP] Check Pods Manifest.lock */,
 				1C6BADAF2154B04700C08D20 /* Sources */,
 				1C6BADB02154B04700C08D20 /* Frameworks */,
 				1C6BADB12154B04700C08D20 /* Resources */,
+				F1A8518EB97A2C10DB3B9868 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,9 +207,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1C6BADE12154B04800C08D20 /* Build configuration list for PBXNativeTarget "TeeTests" */;
 			buildPhases = (
+				2447D526E2F58E1DC3092F3B /* [CP] Check Pods Manifest.lock */,
 				1C6BADC62154B04800C08D20 /* Sources */,
 				1C6BADC72154B04800C08D20 /* Frameworks */,
 				1C6BADC82154B04800C08D20 /* Resources */,
+				75753BD0C210266B965090CA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -170,9 +227,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1C6BADE42154B04800C08D20 /* Build configuration list for PBXNativeTarget "TeeUITests" */;
 			buildPhases = (
+				12CADB8A267C528ACD86DE26 /* [CP] Check Pods Manifest.lock */,
 				1C6BADD12154B04800C08D20 /* Sources */,
 				1C6BADD22154B04800C08D20 /* Frameworks */,
 				1C6BADD32154B04800C08D20 /* Resources */,
+				086EDCFFE3DD99848F17D21F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -233,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C6BADC42154B04800C08D20 /* LaunchScreen.storyboard in Resources */,
+				1C660EC5215ACF6800E7BD7D /* GoogleService-Info.plist in Resources */,
 				1C6BADC12154B04800C08D20 /* Assets.xcassets in Resources */,
 				1C6BADBC2154B04700C08D20 /* Main.storyboard in Resources */,
 			);
@@ -242,6 +302,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C660EC6215ACF6800E7BD7D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,10 +310,146 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C660EC7215ACF6800E7BD7D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		086EDCFFE3DD99848F17D21F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TeeUITests/Pods-TeeUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TeeUITests/Pods-TeeUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		12CADB8A267C528ACD86DE26 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TeeUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2447D526E2F58E1DC3092F3B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TeeTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		75753BD0C210266B965090CA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TeeTests/Pods-TeeTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TeeTests/Pods-TeeTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7BA5A7AD0D2695B7ADA4B3D4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Tee-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F1A8518EB97A2C10DB3B9868 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Tee/Pods-Tee-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tee/Pods-Tee-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1C6BADAF2154B04700C08D20 /* Sources */ = {
@@ -434,6 +631,7 @@
 		};
 		1C6BADDF2154B04800C08D20 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EAB61DBD0567BDAADEB35156 /* Pods-Tee.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -452,6 +650,7 @@
 		};
 		1C6BADE02154B04800C08D20 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 13DA9E18857C6FE6D54EFB3A /* Pods-Tee.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -470,6 +669,7 @@
 		};
 		1C6BADE22154B04800C08D20 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CBE9DE03046FE6C6EC27F043 /* Pods-TeeTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -491,6 +691,7 @@
 		};
 		1C6BADE32154B04800C08D20 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D3F8DDD349873FBF1C40D25 /* Pods-TeeTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -512,6 +713,7 @@
 		};
 		1C6BADE52154B04800C08D20 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FAD7D2B5E8D91A2A120C51D6 /* Pods-TeeUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -532,6 +734,7 @@
 		};
 		1C6BADE62154B04800C08D20 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2838D8E17F739759A8F20016 /* Pods-TeeUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
