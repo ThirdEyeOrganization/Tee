@@ -9,7 +9,6 @@ target 'Tee' do
 pod 'Firebase'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'
-pod 'SVProgressHUD'
 
 
   target 'TeeTests' do
@@ -18,7 +17,7 @@ pod 'SVProgressHUD'
 pod 'Firebase'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'
-pod 'SVProgressHUD'
+
 
   end
 
@@ -28,7 +27,7 @@ pod 'SVProgressHUD'
 pod 'Firebase'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'
-pod 'SVProgressHUD'
+
 
   end
 

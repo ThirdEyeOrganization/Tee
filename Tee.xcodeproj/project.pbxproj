@@ -12,6 +12,7 @@
 		1C660EC5215ACF6800E7BD7D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1C660EC4215ACF6800E7BD7D /* GoogleService-Info.plist */; };
 		1C660EC6215ACF6800E7BD7D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1C660EC4215ACF6800E7BD7D /* GoogleService-Info.plist */; };
 		1C660EC7215ACF6800E7BD7D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1C660EC4215ACF6800E7BD7D /* GoogleService-Info.plist */; };
+		1C660EC9215AE4C400E7BD7D /* WelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C660EC8215AE4C400E7BD7D /* WelcomeScreen.swift */; };
 		1C6BADB72154B04700C08D20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6BADB62154B04700C08D20 /* AppDelegate.swift */; };
 		1C6BADB92154B04700C08D20 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6BADB82154B04700C08D20 /* ViewController.swift */; };
 		1C6BADBC2154B04700C08D20 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C6BADBA2154B04700C08D20 /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		13DA9E18857C6FE6D54EFB3A /* Pods-Tee.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tee.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tee/Pods-Tee.release.xcconfig"; sourceTree = "<group>"; };
 		1C660EC4215ACF6800E7BD7D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1C660EC8215AE4C400E7BD7D /* WelcomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreen.swift; sourceTree = "<group>"; };
 		1C6BADB32154B04700C08D20 /* Tee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C6BADB62154B04700C08D20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C6BADB82154B04700C08D20 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				1C6BADC22154B04800C08D20 /* LaunchScreen.storyboard */,
 				1C6BADC52154B04800C08D20 /* Info.plist */,
 				1C6BADBD2154B04700C08D20 /* Tee.xcdatamodeld */,
+				1C660EC8215AE4C400E7BD7D /* WelcomeScreen.swift */,
 			);
 			path = Tee;
 			sourceTree = "<group>";
@@ -326,7 +329,6 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-TeeUITests/Pods-TeeUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -334,7 +336,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -388,7 +389,6 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-TeeTests/Pods-TeeTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -396,7 +396,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -432,7 +431,6 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Tee/Pods-Tee-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -440,7 +438,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -458,6 +455,7 @@
 			files = (
 				1C6BADB92154B04700C08D20 /* ViewController.swift in Sources */,
 				1C6BADBF2154B04700C08D20 /* Tee.xcdatamodeld in Sources */,
+				1C660EC9215AE4C400E7BD7D /* WelcomeScreen.swift in Sources */,
 				1C6BADB72154B04700C08D20 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
