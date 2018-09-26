@@ -13,6 +13,13 @@
 		1C660EC6215ACF6800E7BD7D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1C660EC4215ACF6800E7BD7D /* GoogleService-Info.plist */; };
 		1C660EC7215ACF6800E7BD7D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1C660EC4215ACF6800E7BD7D /* GoogleService-Info.plist */; };
 		1C660EC9215AE4C400E7BD7D /* WelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C660EC8215AE4C400E7BD7D /* WelcomeScreen.swift */; };
+		1C660ECD215B356A00E7BD7D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C660ECC215B356A00E7BD7D /* LoginViewController.swift */; };
+		1C660ECF215B37E600E7BD7D /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C660ECE215B37E600E7BD7D /* RegisterViewController.swift */; };
+		1C660ED0215B37E600E7BD7D /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C660ECE215B37E600E7BD7D /* RegisterViewController.swift */; };
+		1C660ED1215B37E600E7BD7D /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C660ECE215B37E600E7BD7D /* RegisterViewController.swift */; };
+		1C660ED3215B380500E7BD7D /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C660ED2215B380500E7BD7D /* WelcomeViewController.swift */; };
+		1C660ED4215B380500E7BD7D /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C660ED2215B380500E7BD7D /* WelcomeViewController.swift */; };
+		1C660ED5215B380500E7BD7D /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C660ED2215B380500E7BD7D /* WelcomeViewController.swift */; };
 		1C6BADB72154B04700C08D20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6BADB62154B04700C08D20 /* AppDelegate.swift */; };
 		1C6BADB92154B04700C08D20 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6BADB82154B04700C08D20 /* ViewController.swift */; };
 		1C6BADBC2154B04700C08D20 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C6BADBA2154B04700C08D20 /* Main.storyboard */; };
@@ -45,6 +52,9 @@
 		13DA9E18857C6FE6D54EFB3A /* Pods-Tee.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tee.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tee/Pods-Tee.release.xcconfig"; sourceTree = "<group>"; };
 		1C660EC4215ACF6800E7BD7D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1C660EC8215AE4C400E7BD7D /* WelcomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreen.swift; sourceTree = "<group>"; };
+		1C660ECC215B356A00E7BD7D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = "/Users/prakhar/Desktop/Tee-master/Tee/LoginViewController.swift"; sourceTree = "<absolute>"; };
+		1C660ECE215B37E600E7BD7D /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		1C660ED2215B380500E7BD7D /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		1C6BADB32154B04700C08D20 /* Tee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C6BADB62154B04700C08D20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C6BADB82154B04700C08D20 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +143,9 @@
 			children = (
 				1C6BADB62154B04700C08D20 /* AppDelegate.swift */,
 				1C6BADB82154B04700C08D20 /* ViewController.swift */,
+				1C660ECE215B37E600E7BD7D /* RegisterViewController.swift */,
+				1C660ED2215B380500E7BD7D /* WelcomeViewController.swift */,
+				1C660ECC215B356A00E7BD7D /* LoginViewController.swift */,
 				1C6BADBA2154B04700C08D20 /* Main.storyboard */,
 				1C6BADC02154B04800C08D20 /* Assets.xcassets */,
 				1C6BADC22154B04800C08D20 /* LaunchScreen.storyboard */,
@@ -456,7 +469,10 @@
 				1C6BADB92154B04700C08D20 /* ViewController.swift in Sources */,
 				1C6BADBF2154B04700C08D20 /* Tee.xcdatamodeld in Sources */,
 				1C660EC9215AE4C400E7BD7D /* WelcomeScreen.swift in Sources */,
+				1C660ECF215B37E600E7BD7D /* RegisterViewController.swift in Sources */,
+				1C660ECD215B356A00E7BD7D /* LoginViewController.swift in Sources */,
 				1C6BADB72154B04700C08D20 /* AppDelegate.swift in Sources */,
+				1C660ED3215B380500E7BD7D /* WelcomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,7 +480,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C660ED4215B380500E7BD7D /* WelcomeViewController.swift in Sources */,
 				1C6BADCF2154B04800C08D20 /* TeeTests.swift in Sources */,
+				1C660ED0215B37E600E7BD7D /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,7 +490,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C660ED5215B380500E7BD7D /* WelcomeViewController.swift in Sources */,
 				1C6BADDA2154B04800C08D20 /* TeeUITests.swift in Sources */,
+				1C660ED1215B37E600E7BD7D /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -635,6 +655,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5QDX4L25MJ;
 				INFOPLIST_FILE = Tee/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -642,7 +663,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ThirdEyeOrganization.Tee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -654,6 +675,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5QDX4L25MJ;
 				INFOPLIST_FILE = Tee/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -661,7 +683,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ThirdEyeOrganization.Tee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
