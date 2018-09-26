@@ -8,6 +8,10 @@
 
 import UIKit
 import AVFoundation
+import MobileCoreServices
+import Vision
+import CoreML
+import AVKit
 
 class ViewController: UIViewController {
 
@@ -73,6 +77,13 @@ class ViewController: UIViewController {
         videoPreviewLayer?.frame = view.layer.bounds
         view.layer.addSublayer(videoPreviewLayer!)
         
+        //CoreML-Vision:
+        let videoOutput = AVCaptureVideoDataOutput()
+        videoOutput.setSampleBufferDelegate(self as? AVCaptureVideoDataOutputSampleBufferDelegate, queue: DispatchQueue(label: "buffer delegate"))
+        videoOutput.recommendedVideoSettings(forVideoCodecType: .jpeg, assetWriterOutputFileType: .mp4)
+        captureSession.addOutput(videoOutput)
+        captureSession.sessionPreset = .high
+        
         // Start video capture.
         captureSession.startRunning()
         
@@ -120,6 +131,30 @@ class ViewController: UIViewController {
         
         present(alertPrompt, animated: true, completion: nil)
     }
+    
+    func predict(image: CGImage) {
+        let model = try! VNCoreMLModel(for: Inceptionv3().model)
+        let request = VNCoreMLRequest(model: model, completionHandler: results)
+        let handler = VNSequenceRequestHandler()
+        try! handler.perform([request], on: image)
+    }
+    
+    func results(request: VNRequest, error: Error?) {
+        guard let results = request.results as? [VNClassificationObservation] else {
+            print("No result found")
+            return
+        }
+        
+        guard results.count != 0 else {
+            print("No result found")
+            return
+        }
+        
+        let highestConfidenceResult = results.first!
+        let identifier = highestConfidenceResult.identifier.contains(", ") ? String(describing: highestConfidenceResult.identifier.split(separator: ",").first!) : highestConfidenceResult.identifier
+        
+        print ("Said", identifier)
+    }
 
 
 }
@@ -148,5 +183,20 @@ extension ViewController: AVCaptureMetadataOutputObjectsDelegate {
         }
     }
     
+}
+
+extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { fatalError("pixel buffer is nil") }
+        let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
+        let context = CIContext(options: nil)
+        
+        guard let cgImage = context.createCGImage(ciImage, from: ciImage.extent) else { fatalError("cg image") }
+        let uiImage = UIImage(cgImage: cgImage, scale: 1.0, orientation: .leftMirrored)
+        
+        DispatchQueue.main.sync {
+            predict(image: uiImage.cgImage!)
+        }
+    }
 }
 

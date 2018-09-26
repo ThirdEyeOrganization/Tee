@@ -15,6 +15,9 @@
 		1C6BADC42154B04800C08D20 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C6BADC22154B04800C08D20 /* LaunchScreen.storyboard */; };
 		1C6BADCF2154B04800C08D20 /* TeeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6BADCE2154B04800C08D20 /* TeeTests.swift */; };
 		1C6BADDA2154B04800C08D20 /* TeeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6BADD92154B04800C08D20 /* TeeUITests.swift */; };
+		B0AF49A0215B45EC003C01E3 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B0AF499F215B45EC003C01E3 /* Inceptionv3.mlmodel */; };
+		B0AF49A1215B45EC003C01E3 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B0AF499F215B45EC003C01E3 /* Inceptionv3.mlmodel */; };
+		B0AF49A2215B45EC003C01E3 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B0AF499F215B45EC003C01E3 /* Inceptionv3.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,7 @@
 		1C6BADD52154B04800C08D20 /* TeeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C6BADD92154B04800C08D20 /* TeeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeeUITests.swift; sourceTree = "<group>"; };
 		1C6BADDB2154B04800C08D20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B0AF499F215B45EC003C01E3 /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = Inceptionv3.mlmodel; path = ../../../../Downloads/Inceptionv3.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,7 @@
 		1C6BADB52154B04700C08D20 /* Tee */ = {
 			isa = PBXGroup;
 			children = (
+				B0AF499F215B45EC003C01E3 /* Inceptionv3.mlmodel */,
 				1C6BADB62154B04700C08D20 /* AppDelegate.swift */,
 				1C6BADB82154B04700C08D20 /* ViewController.swift */,
 				1C6BADBA2154B04700C08D20 /* Main.storyboard */,
@@ -260,6 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C6BADB92154B04700C08D20 /* ViewController.swift in Sources */,
+				B0AF49A0215B45EC003C01E3 /* Inceptionv3.mlmodel in Sources */,
 				1C6BADBF2154B04700C08D20 /* Tee.xcdatamodeld in Sources */,
 				1C6BADB72154B04700C08D20 /* AppDelegate.swift in Sources */,
 			);
@@ -270,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C6BADCF2154B04800C08D20 /* TeeTests.swift in Sources */,
+				B0AF49A1215B45EC003C01E3 /* Inceptionv3.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C6BADDA2154B04800C08D20 /* TeeUITests.swift in Sources */,
+				B0AF49A2215B45EC003C01E3 /* Inceptionv3.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
