@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import Foundation
 import MobileCoreServices
 import Vision
 import CoreML
@@ -21,6 +22,9 @@ class ViewController: UIViewController {
     var qrCodeFrameView: UIView?
     
     let notification = UINotificationFeedbackGenerator()
+    
+    var releaseTimer = Timer()
+    var identifiedObj = "";
     
     private let supportedCodeTypes = [AVMetadataObject.ObjectType.upce,
                                       AVMetadataObject.ObjectType.code39,
@@ -48,6 +52,8 @@ class ViewController: UIViewController {
             print("Failed to get the camera device")
             return
         }
+        
+        scheduledTimerWithTimeInterval()
         
         do {
             // Get an instance of the AVCaptureDeviceInput class using the previous device object.
@@ -130,6 +136,7 @@ class ViewController: UIViewController {
         alertPrompt.addAction(cancelAction)
         
         present(alertPrompt, animated: true, completion: nil)
+        scheduledTimerWithTimeInterval()
     }
     
     func predict(image: CGImage) {
@@ -153,9 +160,23 @@ class ViewController: UIViewController {
         let highestConfidenceResult = results.first!
         let identifier = highestConfidenceResult.identifier.contains(", ") ? String(describing: highestConfidenceResult.identifier.split(separator: ",").first!) : highestConfidenceResult.identifier
         
-        print ("Said", identifier)
+        identifiedObj = identifier
+        
     }
-
+    func scheduledTimerWithTimeInterval(){
+        releaseTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(ViewController.runPredict), userInfo: nil, repeats: true)
+        print ("timer started")
+    }
+    
+    @objc func runPredict(){
+        print ("RUNNING", identifiedObj)
+        let string = identifiedObj
+        let utterance = AVSpeechUtterance(string: string)
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        
+        let synth = AVSpeechSynthesizer()
+        synth.speak(utterance)
+    }
 
 }
 
