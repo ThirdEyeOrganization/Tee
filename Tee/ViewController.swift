@@ -8,12 +8,12 @@
 
 import UIKit
 import AVFoundation
+import Firebase
 
-class ViewController: UIViewController {
 
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var captureSession = AVCaptureSession()
-    
-    var videoPreviewLayer: AVCaptureVideoPreviewLayer?
+     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     var qrCodeFrameView: UIView?
     
     let notification = UINotificationFeedbackGenerator()
@@ -30,21 +30,24 @@ class ViewController: UIViewController {
                                       AVMetadataObject.ObjectType.itf14,
                                       AVMetadataObject.ObjectType.dataMatrix,
                                       AVMetadataObject.ObjectType.interleaved2of5,
-                                      AVMetadataObject.ObjectType.qr
-    ]
+                                      AVMetadataObject.ObjectType.qr]
+    
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var resultView: UITextView!
+    let imagePicker = UIImagePickerController()
+    let options = VisionBarcodeDetectorOptions(formats: .all)
+    lazy var vision = Vision.vision()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        // Get the back-facing camera for capturing videos
+        imagePicker.delegate = self
         let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .back)
         
         guard let captureDevice = deviceDiscoverySession.devices.first else {
             print("Failed to get the camera device")
             return
-        }
-        
+        // Do any additional setup after loading the view.
+    }
         do {
             // Get an instance of the AVCaptureDeviceInput class using the previous device object.
             let input = try AVCaptureDeviceInput(device: captureDevice)
@@ -75,7 +78,10 @@ class ViewController: UIViewController {
         
         // Start video capture.
         captureSession.startRunning()
-        
+        captureSession.startRunning()
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = captureSession.startRunning()
+        present(imagePicker, animated: true, completion: nil)
         
         // Initialize QR Code Frame to highlight the QR code
         qrCodeFrameView = UIView()
@@ -86,6 +92,10 @@ class ViewController: UIViewController {
             view.addSubview(qrCodeFrameView)
             view.bringSubviewToFront(qrCodeFrameView)
         }
+    
+do {
+
+    
     }
     
     override func didReceiveMemoryWarning() {
@@ -93,60 +103,39 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - Helper methods
-    
-    func launchApp(decodedURL: String) {
-        
-        if presentedViewController != nil {
-            notification.notificationOccurred(.error)
-            return
-        }
-        
-        let alertPrompt = UIAlertController(title: "Open App", message: "This requires you to open the \(decodedURL)", preferredStyle: .actionSheet)
-        notification.notificationOccurred(.success)
-        let confirmAction = UIAlertAction(title: "Confirm", style: UIAlertAction.Style.default, handler: { (action) -> Void in
+    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            imageView.image = pickedImage
             
-            if let url = URL(string: decodedURL) {
-                if UIApplication.shared.canOpenURL(url) {
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            let barcodeDetector = vision.barcodeDetector(options: options)
+            let visionImage = VisionImage(image: pickedImage)
+            barcodeDetector.detect(in: visionImage) { (barcodes, error) in
+                guard error == nil, let barcodes = barcodes, !barcodes.isEmpty else {
+                    self.dismiss(animated: true, completion: nil)
+                    self.resultView.text = "No Barcode Detected"
+                    return
+                }
+                
+                for barcode in barcodes {
+                    let rawValue = barcode.rawValue!
+                    let valueType = barcode.valueType
+                    
+                    switch valueType {
+                    case .URL:
+                        self.resultView.text = "URL: \(rawValue)"
+                    case .phone:
+                        self.resultView.text = "Phone number: \(rawValue)"
+                    default:
+                        self.resultView.text = rawValue
+                    }
                 }
             }
-        })
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
-        
-        alertPrompt.addAction(confirmAction)
-        alertPrompt.addAction(cancelAction)
-        
-        present(alertPrompt, animated: true, completion: nil)
+        }
+        dismiss(animated: true, completion: nil)
     }
-
-
-}
-
-extension ViewController: AVCaptureMetadataOutputObjectsDelegate {
     
-    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        // Check if the metadataObjects array is not nil and it contains at least one object.
-        if metadataObjects.count == 0 {
-            qrCodeFrameView?.frame = CGRect.zero
-            notification.notificationOccurred(.error)
-            return
-        }
-        
-        // Get the metadata object.
-        let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
-        
-        if supportedCodeTypes.contains(metadataObj.type) {
-            // If the found metadata is equal to the QR code metadata (or barcode) then update the status label's text and set the bounds
-            let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
-            qrCodeFrameView?.frame = barCodeObject!.bounds
-            
-            if metadataObj.stringValue != nil {
-                launchApp(decodedURL: metadataObj.stringValue!)
-            }
-        }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
     
 }
-
