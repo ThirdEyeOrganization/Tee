@@ -8,9 +8,53 @@
 
 import UIKit
 import AVFoundation
+import MapKit
+import CoreLocation
 
-class ViewController: UIViewController {
 
+class ViewController: UIViewController, CLLocationManagerDelegate {
+    // initialize CLLocation
+   
+    let locationManager = CLLocationManager()
+    
+    @IBOutlet weak var busButton: UIButton!
+    
+    @IBAction func busStop(_ sender: Any) {
+        // Do any initiation for CORELOCATION
+        // Ask for Authorisation from the User.
+        self.locationManager.requestAlwaysAuthorization()
+        
+        // For use in foreground
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+        
+        let latitude = locationManager.location?.coordinate.latitude
+        let longitude = locationManager.location?.coordinate.longitude
+        
+        
+        print ("lat is \(String(describing: latitude)) long is \(String(describing: longitude))")
+        let urlString = "https://api.translink.ca/rttiapi/v1/stops?apikey=BYuqozztjF6ZfjC8zuPI&lat=\(String(describing: latitude))&long=\(String(describing: longitude))"
+
+        let url = URL(string: urlString)
+        let task = URLSession.shared.dataTask(with: url as! URL) { (data, response, error) in
+            if error != nil {
+                print(error!)
+            } else {
+                if let usableData = data {
+                    print(usableData) //JSONSerialization
+                }
+            }
+        }
+        task.resume()
+    }
+
+    
+    
     var captureSession = AVCaptureSession()
     
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
@@ -35,7 +79,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
         
         // Get the back-facing camera for capturing videos
         let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .back)
@@ -86,6 +130,8 @@ class ViewController: UIViewController {
             view.addSubview(qrCodeFrameView)
             view.bringSubviewToFront(qrCodeFrameView)
         }
+        
+        view.bringSubviewToFront(busButton)
     }
     
     override func didReceiveMemoryWarning() {
@@ -121,7 +167,10 @@ class ViewController: UIViewController {
         present(alertPrompt, animated: true, completion: nil)
     }
 
-
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        //print("locations = \(locValue.latitude) \(locValue.longitude)")
+    }
 }
 
 extension ViewController: AVCaptureMetadataOutputObjectsDelegate {
