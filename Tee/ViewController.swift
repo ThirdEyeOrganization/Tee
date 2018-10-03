@@ -12,6 +12,7 @@ import MapKit
 import CoreLocation
 
 
+
 class ViewController: UIViewController, CLLocationManagerDelegate {
     // initialize CLLocation
    
@@ -47,6 +48,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             } else {
                 if let usableData = data {
                     print(usableData) //JSONSerialization
+                    
+                    
                 }
             }
         }
