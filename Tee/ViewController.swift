@@ -8,9 +8,67 @@
 
 import UIKit
 import AVFoundation
+import MapKit
+import CoreLocation
 
-class ViewController: UIViewController {
 
+
+class ViewController: UIViewController, CLLocationManagerDelegate, XMLParserDelegate{
+    // initialize CLLocation
+   
+    let locationManager = CLLocationManager()
+    var parser = XMLParser()
+    
+    @IBOutlet weak var busButton: UIButton!
+    
+    @IBAction func busStop(_ sender: Any) {
+        // Do any initiation for CORELOCATION
+        // Ask for Authorisation from the User.
+        self.locationManager.requestAlwaysAuthorization()
+        
+        // For use in foreground
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+        
+        let latitude = locationManager.location?.coordinate.latitude
+        let longitude = locationManager.location?.coordinate.longitude
+        
+        let latString:String = String("\(String(describing: latitude!))".prefix(9))
+        let longString:String = String("\(String(describing: longitude!))".prefix(11))
+       
+        let stopParser = StopParser()
+        let buses = stopParser.parseBuses(latString: latString, longString: longString)
+        
+        var alertMsgStr = ""
+        var stopNo = ""
+        
+        if (buses.count > 0){
+            for i in 0...(buses.count-1){
+                //TODO - add UI functionality!
+                print("At bus stop no. \(buses[i].getStopNo()):")
+                print("Bus \(buses[i].getRouteNo()) to \(buses[i].getDestination()) will arrive in \(buses[i].getExpectedCountdown())")
+                
+                stopNo = buses[i].getStopNo()
+                alertMsgStr.append(contentsOf: "Bus \(buses[i].getRouteNo()) to \(buses[i].getDestination()) will arrive in \(buses[i].getExpectedCountdown()) \n")
+            }
+            
+            //showing an alert prompt
+            let alertPrompt = UIAlertController(title: "Stop \(stopNo)", message: alertMsgStr, preferredStyle: .actionSheet)
+            
+            let cancelAction = UIAlertAction(title: "Close", style: UIAlertAction.Style.cancel, handler: nil)
+            
+            alertPrompt.addAction(cancelAction)
+            present(alertPrompt, animated: true, completion: nil)
+        }
+    }
+    
+    
+    
     var captureSession = AVCaptureSession()
     
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
@@ -35,7 +93,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
         
         // Get the back-facing camera for capturing videos
         let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .back)
@@ -86,6 +144,8 @@ class ViewController: UIViewController {
             view.addSubview(qrCodeFrameView)
             view.bringSubviewToFront(qrCodeFrameView)
         }
+        
+        view.bringSubviewToFront(busButton)
     }
     
     override func didReceiveMemoryWarning() {
@@ -121,7 +181,10 @@ class ViewController: UIViewController {
         present(alertPrompt, animated: true, completion: nil)
     }
 
-
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        //print("locations = \(locValue.latitude) \(locValue.longitude)")
+    }
 }
 
 extension ViewController: AVCaptureMetadataOutputObjectsDelegate {
