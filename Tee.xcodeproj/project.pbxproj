@@ -15,6 +15,8 @@
 		1C6BADC42154B04800C08D20 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C6BADC22154B04800C08D20 /* LaunchScreen.storyboard */; };
 		1C6BADCF2154B04800C08D20 /* TeeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6BADCE2154B04800C08D20 /* TeeTests.swift */; };
 		1C6BADDA2154B04800C08D20 /* TeeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6BADD92154B04800C08D20 /* TeeUITests.swift */; };
+		B03B5FFE216DA27800809FF2 /* Transit-StopParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03B5FFD216DA27800809FF2 /* Transit-StopParser.swift */; };
+		B0BD47D821671BF80015CA86 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BD47D721671BF80015CA86 /* Parser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		1C6BADD52154B04800C08D20 /* TeeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C6BADD92154B04800C08D20 /* TeeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeeUITests.swift; sourceTree = "<group>"; };
 		1C6BADDB2154B04800C08D20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B03B5FFD216DA27800809FF2 /* Transit-StopParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Transit-StopParser.swift"; path = "Utilities/Transit-StopParser.swift"; sourceTree = "<group>"; };
+		B0BD47D721671BF80015CA86 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,7 @@
 		1C6BADB52154B04700C08D20 /* Tee */ = {
 			isa = PBXGroup;
 			children = (
+				B03B5FFD216DA27800809FF2 /* Transit-StopParser.swift */,
 				1C6BADB62154B04700C08D20 /* AppDelegate.swift */,
 				1C6BADB82154B04700C08D20 /* ViewController.swift */,
 				1C6BADBA2154B04700C08D20 /* Main.storyboard */,
@@ -106,6 +111,7 @@
 				1C6BADC22154B04800C08D20 /* LaunchScreen.storyboard */,
 				1C6BADC52154B04800C08D20 /* Info.plist */,
 				1C6BADBD2154B04700C08D20 /* Tee.xcdatamodeld */,
+				B0BD47D721671BF80015CA86 /* Parser.swift */,
 			);
 			path = Tee;
 			sourceTree = "<group>";
@@ -259,9 +265,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0BD47D821671BF80015CA86 /* Parser.swift in Sources */,
 				1C6BADB92154B04700C08D20 /* ViewController.swift in Sources */,
 				1C6BADBF2154B04700C08D20 /* Tee.xcdatamodeld in Sources */,
 				1C6BADB72154B04700C08D20 /* AppDelegate.swift in Sources */,
+				B03B5FFE216DA27800809FF2 /* Transit-StopParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
