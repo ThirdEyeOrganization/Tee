@@ -16,7 +16,8 @@
 		1C6BADCF2154B04800C08D20 /* TeeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6BADCE2154B04800C08D20 /* TeeTests.swift */; };
 		1C6BADDA2154B04800C08D20 /* TeeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6BADD92154B04800C08D20 /* TeeUITests.swift */; };
 		B03B5FFE216DA27800809FF2 /* Transit-StopParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03B5FFD216DA27800809FF2 /* Transit-StopParser.swift */; };
-		B0BD47D821671BF80015CA86 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BD47D721671BF80015CA86 /* Parser.swift */; };
+		B03B6000216DAA6B00809FF2 /* Transit-BusParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03B5FFF216DAA6B00809FF2 /* Transit-BusParser.swift */; };
+		B03B6002216DABF400809FF2 /* Bus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03B6001216DABF400809FF2 /* Bus.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +53,8 @@
 		1C6BADD92154B04800C08D20 /* TeeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeeUITests.swift; sourceTree = "<group>"; };
 		1C6BADDB2154B04800C08D20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B03B5FFD216DA27800809FF2 /* Transit-StopParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Transit-StopParser.swift"; path = "Utilities/Transit-StopParser.swift"; sourceTree = "<group>"; };
-		B0BD47D721671BF80015CA86 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		B03B5FFF216DAA6B00809FF2 /* Transit-BusParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Transit-BusParser.swift"; path = "Utilities/Transit-BusParser.swift"; sourceTree = "<group>"; };
+		B03B6001216DABF400809FF2 /* Bus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bus.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,8 @@
 			isa = PBXGroup;
 			children = (
 				B03B5FFD216DA27800809FF2 /* Transit-StopParser.swift */,
+				B03B5FFF216DAA6B00809FF2 /* Transit-BusParser.swift */,
+				B03B6001216DABF400809FF2 /* Bus.swift */,
 				1C6BADB62154B04700C08D20 /* AppDelegate.swift */,
 				1C6BADB82154B04700C08D20 /* ViewController.swift */,
 				1C6BADBA2154B04700C08D20 /* Main.storyboard */,
@@ -111,7 +115,6 @@
 				1C6BADC22154B04800C08D20 /* LaunchScreen.storyboard */,
 				1C6BADC52154B04800C08D20 /* Info.plist */,
 				1C6BADBD2154B04700C08D20 /* Tee.xcdatamodeld */,
-				B0BD47D721671BF80015CA86 /* Parser.swift */,
 			);
 			path = Tee;
 			sourceTree = "<group>";
@@ -265,7 +268,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0BD47D821671BF80015CA86 /* Parser.swift in Sources */,
+				B03B6002216DABF400809FF2 /* Bus.swift in Sources */,
+				B03B6000216DAA6B00809FF2 /* Transit-BusParser.swift in Sources */,
 				1C6BADB92154B04700C08D20 /* ViewController.swift in Sources */,
 				1C6BADBF2154B04700C08D20 /* Tee.xcdatamodeld in Sources */,
 				1C6BADB72154B04700C08D20 /* AppDelegate.swift in Sources */,
@@ -444,6 +448,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5QDX4L25MJ;
 				INFOPLIST_FILE = Tee/Info.plist;
@@ -451,8 +456,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.adityachinchure;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ThirdEyeOrganization;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -462,6 +468,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5QDX4L25MJ;
 				INFOPLIST_FILE = Tee/Info.plist;
@@ -469,8 +476,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.adityachinchure;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ThirdEyeOrganization;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

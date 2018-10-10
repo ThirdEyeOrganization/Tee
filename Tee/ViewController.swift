@@ -22,10 +22,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, XMLParserDele
     @IBOutlet weak var busButton: UIButton!
     
     @IBAction func busStop(_ sender: Any) {
-        getXMLDataFromServer()
-    }
-    
-    func getXMLDataFromServer(){
         // Do any initiation for CORELOCATION
         // Ask for Authorisation from the User.
         self.locationManager.requestAlwaysAuthorization()
@@ -41,118 +37,37 @@ class ViewController: UIViewController, CLLocationManagerDelegate, XMLParserDele
         
         let latitude = locationManager.location?.coordinate.latitude
         let longitude = locationManager.location?.coordinate.longitude
+        
         let latString:String = String("\(String(describing: latitude!))".prefix(9))
         let longString:String = String("\(String(describing: longitude!))".prefix(11))
+       
+        let stopParser = StopParser()
+        let buses = stopParser.parseBuses(latString: latString, longString: longString)
         
-        let url = URL(string: "https://api.translink.ca/rttiapi/v1/stops?apikey=BYuqozztjF6ZfjC8zuPI&lat=\(latString)&long=\(longString)&radius=7")
-        print("https://api.translink.ca/rttiapi/v1/stops?apikey=BYuqozztjF6ZfjC8zuPI&lat=\(latString)&long=\(longString)&radius=7")
+        var alertMsgStr = ""
+        var stopNo = ""
         
-        //Creating data task
-        let task = URLSession.shared.dataTask(with: url! as URL) { (data, response, error) in
+        if (buses.count > 0){
+            for i in 0...(buses.count-1){
+                //TODO - add UI functionality!
+                print("At bus stop no. \(buses[i].getStopNo()):")
+                print("Bus \(buses[i].getRouteNo()) to \(buses[i].getDestination()) will arrive in \(buses[i].getExpectedCountdown())")
+                
+                stopNo = buses[i].getStopNo()
+                alertMsgStr.append(contentsOf: "Bus \(buses[i].getRouteNo()) to \(buses[i].getDestination()) will arrive in \(buses[i].getExpectedCountdown()) \n")
+            }
             
-            if data == nil {
-                print("dataTaskWithRequest error: \(String(describing: error?.localizedDescription))")
-                return
-            }
+            //showing an alert prompt
+            let alertPrompt = UIAlertController(title: "Stop \(stopNo)", message: alertMsgStr, preferredStyle: .actionSheet)
             
-            let parser = XMLParser(data: data!)
-            parser.delegate = self
-            parser.parse()
+            let cancelAction = UIAlertAction(title: "Close", style: UIAlertAction.Style.cancel, handler: nil)
             
-        }
-        
-        task.resume()
-        
-    }
-    
-    var currentParsingElement = ""
-    var currStopNo = ""
-    var stopNo = ""
-    var routeNoArray: Array<String> = []
-    var destinationArray: Array<String> = []
-    var expectedCountdownArray: Array<String> = []
-    
-    
-    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
-        print(elementName)
-        currentParsingElement = elementName
-        if elementName == "Response" {
-            print("Started parsing...")
-        }
-    }
-    
-    func parser(_ parser: XMLParser, foundCharacters string: String) {
-        let foundedChar = string.trimmingCharacters(in:NSCharacterSet.whitespacesAndNewlines)
-        if (!foundedChar.isEmpty) {
-            if currentParsingElement == "StopNo" {
-                if(currStopNo == "") {
-                    currStopNo = foundedChar
-                }
-            }
-            else if currentParsingElement == "RouteNo" {
-                routeNoArray.append(foundedChar)
-            }
-            else if currentParsingElement == "Destination" {
-                destinationArray.append(foundedChar)
-            }
-            else if currentParsingElement == "ExpectedCountdown" {
-                expectedCountdownArray.append(foundedChar)
-            }
-            else if currentParsingElement == "Error" {
-                print("There is an error")
-                stopNo = "ERROR"
-            }
-        }
-        
-    }
-    
-    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        if elementName == "Response" {
-            print("Ended parsing...")
-        }
-    }
-    
-    func parserDidEndDocument(_ parser: XMLParser) {
-        print(currStopNo)
-        if(currStopNo != ""){
-            stopNo = currStopNo
-            findBusInfo()
-        } else {
-            print(routeNoArray)
-            print(destinationArray)
-            print(expectedCountdownArray)
-            let alertPrompt = UIAlertController(title: "Stop \(stopNo)", message: "routeNum: \(routeNoArray) dest: \(destinationArray) time: \(expectedCountdownArray)", preferredStyle: .actionSheet)
-            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
             alertPrompt.addAction(cancelAction)
             present(alertPrompt, animated: true, completion: nil)
         }
     }
     
-    func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
-        print("parseErrorOccurred: \(parseError)")
-    }
-
-    func findBusInfo(){
-        
-        let url = URL(string: "http://api.translink.ca/rttiapi/v1/stops/\(currStopNo)/estimates?apikey=BYuqozztjF6ZfjC8zuPI&count=1")
-        print("http://api.translink.ca/rttiapi/v1/stops/\(currStopNo)/estimates?apikey=BYuqozztjF6ZfjC8zuPI&count=1")
-        currStopNo = ""
-        
-        //Creating data task
-        let task = URLSession.shared.dataTask(with: url! as URL) { (data, response, error) in
-            if data == nil {
-                print("dataTaskWithRequest error: \(String(describing: error?.localizedDescription))")
-                return
-            }
-            
-            let parser = XMLParser(data: data!)
-            parser.delegate = self
-            parser.parse()
-        }
-        
-        task.resume()
-        
-    }
+    
     
     var captureSession = AVCaptureSession()
     
