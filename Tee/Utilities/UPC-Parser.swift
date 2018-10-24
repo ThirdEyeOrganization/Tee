@@ -24,28 +24,23 @@ class UPCParser: NSObject {
         let url = NSURL(string: "https://api.upcitemdb.com/prod/trial/lookup?upc=\(upc)")
         
         //fetching the data from the url
-        URLSession.shared.dataTask(with: (url as? URL)!, completionHandler: {(data, response, error) -> Void in
+        URLSession.shared.dataTask(with: (url as URL?)!, completionHandler: {(data, response, error) -> Void in
             
             if let jsonObj = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? NSDictionary {
                 
                 //printing the json in console
                 print(jsonObj!.value(forKey: "items")!)
-                
                 //getting the avengers tag array from json and converting it to NSArray
-                if let heroeArray = jsonObj!.value(forKey: "items") as? NSArray {
+                if let itemsArray = jsonObj!.value(forKey: "items") as? NSArray {
                     //looping through all the elements
-                    for heroe in heroeArray{
-                        
+                    for item in itemsArray{
                         //converting the element to a dictionary
-                        if let heroeDict = heroe as? NSDictionary {
-                            
+                        if let itemDict = item as? NSDictionary {
                             //getting the name from the dictionary
-                            if let name = heroeDict.value(forKey: "title") {
-                                
+                            if let name = itemDict.value(forKey: "title") {
                                 //adding the name to the array
                                 self.nameArray.append((name as? String)!)
                             }
-                            
                         }
                     }
                 }
