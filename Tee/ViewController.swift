@@ -12,7 +12,6 @@ import MapKit
 import CoreLocation
 
 
-
 class ViewController: UIViewController, CLLocationManagerDelegate, XMLParserDelegate{
     // initialize CLLocation
    
@@ -206,7 +205,14 @@ extension ViewController: AVCaptureMetadataOutputObjectsDelegate {
             qrCodeFrameView?.frame = barCodeObject!.bounds
             
             if metadataObj.stringValue != nil {
-                launchApp(decodedURL: metadataObj.stringValue!)
+                let number = Int(metadataObj.stringValue!)
+                if number != nil{
+                    let upcParser = UPCParser()
+                    upcParser.parseUPC(upccode: number!)
+                }else{
+                    launchApp(decodedURL: metadataObj.stringValue!)
+                }
+                
             }
         }
     }
