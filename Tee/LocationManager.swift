@@ -12,10 +12,10 @@ import CoreLocation
 
 
 class LocationManager: NSObject, CLLocationManagerDelegate{
-    
     let locationManager = CLLocationManager()
     
     func returnLatLong() -> [String] {
+        
         locationManager.requestWhenInUseAuthorization()
         var currentLocation: CLLocation!
         var locArr:[String] = []

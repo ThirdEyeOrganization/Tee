@@ -12,34 +12,25 @@ import MapKit
 import CoreLocation
 
 
-class ViewController: UIViewController, CLLocationManagerDelegate, XMLParserDelegate{
+class ViewController: UIViewController{
     // initialize CLLocation
    
     let locationManager = CLLocationManager()
-    var parser = XMLParser()
     
     @IBOutlet weak var busButton: UIButton!
     
     @IBAction func busStop(_ sender: Any) {
-        // Do any initiation for CORELOCATION
-        // Ask for Authorisation from the User.
-        self.locationManager.requestAlwaysAuthorization()
+      
         
-        // For use in foreground
-        self.locationManager.requestWhenInUseAuthorization()
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
+        let locManager = LocationManager()
+        var locArr:[String] = locManager.returnLatLong()
+        while(locArr.isEmpty){
+            locArr = locManager.returnLatLong()
         }
         
-        let latitude = locationManager.location?.coordinate.latitude
-        let longitude = locationManager.location?.coordinate.longitude
-        
-        let latString:String = String("\(String(describing: latitude!))".prefix(9))
-        let longString:String = String("\(String(describing: longitude!))".prefix(11))
-       
+        let latString:String = String(locArr[0].prefix(9))
+        let longString:String = String(locArr[1].prefix(11))
+
         let stopParser = StopParser()
         let buses = stopParser.parseBuses(latString: latString, longString: longString)
         
@@ -180,10 +171,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, XMLParserDele
         present(alertPrompt, animated: true, completion: nil)
     }
 
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        //print("locations = \(locValue.latitude) \(locValue.longitude)")
-    }
 }
 
 extension ViewController: AVCaptureMetadataOutputObjectsDelegate {

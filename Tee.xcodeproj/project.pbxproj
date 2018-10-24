@@ -19,6 +19,7 @@
 		B03B6000216DAA6B00809FF2 /* Transit-BusParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03B5FFF216DAA6B00809FF2 /* Transit-BusParser.swift */; };
 		B03B6002216DABF400809FF2 /* Bus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03B6001216DABF400809FF2 /* Bus.swift */; };
 		B03B600421758C5600809FF2 /* UPC-Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03B600321758C5600809FF2 /* UPC-Parser.swift */; };
+		B03B600621801A6000809FF2 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03B600521801A6000809FF2 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		B03B5FFF216DAA6B00809FF2 /* Transit-BusParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Transit-BusParser.swift"; path = "Utilities/Transit-BusParser.swift"; sourceTree = "<group>"; };
 		B03B6001216DABF400809FF2 /* Bus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bus.swift; sourceTree = "<group>"; };
 		B03B600321758C5600809FF2 /* UPC-Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UPC-Parser.swift"; path = "Utilities/UPC-Parser.swift"; sourceTree = "<group>"; };
+		B03B600521801A6000809FF2 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 				1C6BADB62154B04700C08D20 /* AppDelegate.swift */,
 				1C6BADB82154B04700C08D20 /* ViewController.swift */,
 				B03B600321758C5600809FF2 /* UPC-Parser.swift */,
+				B03B600521801A6000809FF2 /* LocationManager.swift */,
 				1C6BADBA2154B04700C08D20 /* Main.storyboard */,
 				1C6BADC02154B04800C08D20 /* Assets.xcassets */,
 				1C6BADC22154B04800C08D20 /* LaunchScreen.storyboard */,
@@ -275,6 +278,7 @@
 				B03B6000216DAA6B00809FF2 /* Transit-BusParser.swift in Sources */,
 				1C6BADB92154B04700C08D20 /* ViewController.swift in Sources */,
 				1C6BADBF2154B04700C08D20 /* Tee.xcdatamodeld in Sources */,
+				B03B600621801A6000809FF2 /* LocationManager.swift in Sources */,
 				B03B600421758C5600809FF2 /* UPC-Parser.swift in Sources */,
 				1C6BADB72154B04700C08D20 /* AppDelegate.swift in Sources */,
 				B03B5FFE216DA27800809FF2 /* Transit-StopParser.swift in Sources */,
