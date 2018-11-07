@@ -18,6 +18,22 @@ class ViewController: UIViewController{
     let locationManager = CLLocationManager()
     
     @IBOutlet weak var busButton: UIButton!
+    @IBOutlet weak var placesButton: UIButton!
+    
+    
+    @IBAction func findPlaces(_ sender: Any) {
+        let locManager = LocationManager()
+        var locArr:[String] = locManager.returnLatLong()
+        while(locArr.isEmpty){
+            locArr = locManager.returnLatLong()
+        }
+        
+        let latString:String = String(locArr[0].prefix(9))
+        let longString:String = String(locArr[1].prefix(11))
+        
+        let placesParser = GmapsPlacesParser()
+        placesParser.findPlaces(lat: latString, long: longString)
+    }
     
     @IBAction func busStop(_ sender: Any) {
       
@@ -136,6 +152,7 @@ class ViewController: UIViewController{
         }
         
         view.bringSubviewToFront(busButton)
+        view.bringSubviewToFront(placesButton)
     }
     
     override func didReceiveMemoryWarning() {

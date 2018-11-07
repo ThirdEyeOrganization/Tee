@@ -20,6 +20,8 @@
 		B03B6002216DABF400809FF2 /* Bus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03B6001216DABF400809FF2 /* Bus.swift */; };
 		B03B600421758C5600809FF2 /* UPC-Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03B600321758C5600809FF2 /* UPC-Parser.swift */; };
 		B03B600621801A6000809FF2 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03B600521801A6000809FF2 /* LocationManager.swift */; };
+		B0596A4D21929FC400EDB7BD /* Gmaps-Places-Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0596A4C21929FC400EDB7BD /* Gmaps-Places-Parser.swift */; };
+		B0596A502192A19F00EDB7BD /* Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0596A4F2192A19F00EDB7BD /* Properties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		B03B6001216DABF400809FF2 /* Bus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bus.swift; sourceTree = "<group>"; };
 		B03B600321758C5600809FF2 /* UPC-Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UPC-Parser.swift"; path = "Utilities/UPC-Parser.swift"; sourceTree = "<group>"; };
 		B03B600521801A6000809FF2 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		B0596A4C21929FC400EDB7BD /* Gmaps-Places-Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gmaps-Places-Parser.swift"; sourceTree = "<group>"; };
+		B0596A4F2192A19F00EDB7BD /* Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Properties.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +115,7 @@
 			children = (
 				B03B5FFD216DA27800809FF2 /* Transit-StopParser.swift */,
 				B03B5FFF216DAA6B00809FF2 /* Transit-BusParser.swift */,
+				B0596A4C21929FC400EDB7BD /* Gmaps-Places-Parser.swift */,
 				B03B6001216DABF400809FF2 /* Bus.swift */,
 				1C6BADB62154B04700C08D20 /* AppDelegate.swift */,
 				1C6BADB82154B04700C08D20 /* ViewController.swift */,
@@ -121,6 +126,7 @@
 				1C6BADC22154B04800C08D20 /* LaunchScreen.storyboard */,
 				1C6BADC52154B04800C08D20 /* Info.plist */,
 				1C6BADBD2154B04700C08D20 /* Tee.xcdatamodeld */,
+				B0596A4F2192A19F00EDB7BD /* Properties.swift */,
 			);
 			path = Tee;
 			sourceTree = "<group>";
@@ -281,6 +287,8 @@
 				B03B600621801A6000809FF2 /* LocationManager.swift in Sources */,
 				B03B600421758C5600809FF2 /* UPC-Parser.swift in Sources */,
 				1C6BADB72154B04700C08D20 /* AppDelegate.swift in Sources */,
+				B0596A4D21929FC400EDB7BD /* Gmaps-Places-Parser.swift in Sources */,
+				B0596A502192A19F00EDB7BD /* Properties.swift in Sources */,
 				B03B5FFE216DA27800809FF2 /* Transit-StopParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
