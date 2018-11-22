@@ -20,7 +20,7 @@ class StopParser: NSObject, XMLParserDelegate {
     
     func parseBuses(latString:String, longString:String) -> Array<Bus>{
         
-        let url = URL(string: "https://api.translink.ca/rttiapi/v1/stops?apikey=BYuqozztjF6ZfjC8zuPI&lat=\(latString)&long=\(longString)&radius=200")
+        let url = URL(string: "https://api.translink.ca/rttiapi/v1/stops?apikey=BYuqozztjF6ZfjC8zuPI&lat=\(latString)&long=\(longString)&radius=1000")
         
         //Creating data task
         let task = URLSession.shared.dataTask(with: url! as URL) { (data, response, error) in
@@ -49,6 +49,7 @@ class StopParser: NSObject, XMLParserDelegate {
             if currentParsingElement == "StopNo" {
                 if(currStopNo == "") {
                     currStopNo = foundedChar
+                    print(currStopNo)
                 }
             }
             else if currentParsingElement == "Error" {

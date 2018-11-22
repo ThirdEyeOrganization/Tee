@@ -17,11 +17,40 @@ class ViewController: UIViewController{
    
     let locationManager = CLLocationManager()
     
-    @IBOutlet weak var busButton: UIButton!
-    @IBOutlet weak var placesButton: UIButton!
+    @IBOutlet weak var cameraButton: UIButton!
+    @IBOutlet weak var transitButton: UIButton!
+    @IBOutlet weak var mapButton: UIButton!
+    @IBOutlet weak var weatherButton: UIButton!
+    @IBOutlet weak var settingsButton: UIButton!
+    @IBOutlet weak var choiceLabel: UILabel!
+    @IBOutlet weak var buttonScrollView: UIScrollView!
+    
+    var buttons: [UIButton] = []
+    let numButtons = 5
+    var selected = 0
+    var prevSelected = 0
+    var settingsSelected: Bool = false
     
     
-    @IBAction func findPlaces(_ sender: Any) {
+    @IBAction func cameraButtonClicked(_ sender: Any) {
+        setButtonToSelectedWhenButtonPressed(index: 0)
+    }
+    @IBAction func transitButtonClicked(_ sender: Any) {
+        setButtonToSelectedWhenButtonPressed(index: 2)
+        busStop()
+    }
+    @IBAction func mapButtonClicked(_ sender: Any) {
+        setButtonToSelectedWhenButtonPressed(index: 1)
+        findPlaces()
+    }
+    @IBAction func weatherButtonClicked(_ sender: Any) {
+        setButtonToSelectedWhenButtonPressed(index: 3)
+    }
+    @IBAction func settingsButtonClicked(_ sender: Any) {
+        setButtonToSelectedWhenButtonPressed(index: 4)
+    }
+    
+    func findPlaces() {
         let locManager = LocationManager()
         var locArr:[String] = locManager.returnLatLong()
         while(locArr.isEmpty){
@@ -35,8 +64,7 @@ class ViewController: UIViewController{
         placesParser.findPlaces(lat: latString, long: longString)
     }
     
-    @IBAction func busStop(_ sender: Any) {
-      
+    func busStop() {
         
         let locManager = LocationManager()
         var locArr:[String] = locManager.returnLatLong()
@@ -151,8 +179,16 @@ class ViewController: UIViewController{
             view.bringSubviewToFront(qrCodeFrameView)
         }
         
-        view.bringSubviewToFront(busButton)
-        view.bringSubviewToFront(placesButton)
+        view.bringSubviewToFront(choiceLabel)
+        view.bringSubviewToFront(buttonScrollView)
+        choiceLabel.layer.cornerRadius = 45
+        choiceLabel.layer.masksToBounds = true
+        choiceLabel.layer.borderColor = UIColor.gray.cgColor
+        choiceLabel.layer.borderWidth = 6
+        buttonScrollView.delegate = self
+        buttons = [cameraButton, mapButton, transitButton, weatherButton, settingsButton]
+        createButtonScrollView()
+        setButtonToSelected(index: 0)
     }
     
     override func didReceiveMemoryWarning() {
@@ -186,6 +222,60 @@ class ViewController: UIViewController{
         alertPrompt.addAction(cancelAction)
         
         present(alertPrompt, animated: true, completion: nil)
+    }
+    
+    func createButtonScrollView(){
+        var pw = Int(UIScreen.main.bounds.size.width)
+        buttonScrollView.contentSize = CGSize.init(width: (numButtons*90+2*(pw/2-60)), height: 80)
+        buttonScrollView.isScrollEnabled = true
+        buttonScrollView.isUserInteractionEnabled = true
+        buttonScrollView.decelerationRate = UIScrollView.DecelerationRate.fast
+        var px:Int = (pw/2)-60
+        var py:Int = 0
+        for k in 0...(numButtons-1){
+            let button = buttons[k]
+            button.frame = CGRect(x: px+30, y: py+10, width: 60, height: 60)
+            buttonScrollView.addSubview(button)
+            px += 90
+        }
+    }
+    
+    func setButtonToSelectedWhenButtonPressed(index: Int){
+        if selected == index {
+            return
+        }
+        if index == 4 {
+            settingsSelected = true
+        }
+        selected = index
+        print("Set selected on click to \(selected)")
+        var offsets: [Int] = []
+        for i in 0...(numButtons-1){
+            offsets.append(i*90)
+        }
+        let closest = offsets[index]
+        buttonScrollView.setContentOffset(CGPoint(x: closest, y: 0), animated: true)
+        setButtonToSelected(index: index)
+    }
+    
+    func setButtonToSelected(index: Int){
+        let button = buttonScrollView.subviews[index]
+        button.frame = button.frame.insetBy(dx: -9, dy: -9)
+    }
+    
+    func resetButtons(){
+        let subViews = buttonScrollView.subviews
+        for subview in subViews{
+            subview.removeFromSuperview()
+        }
+        let pw = Int(UIScreen.main.bounds.size.width)
+        var px:Int = (pw/2)-60
+        let py:Int = 0
+        for button in buttons {
+            button.frame = CGRect(x: px+30, y: py+10, width: 60, height: 60)
+            buttonScrollView.addSubview(button)
+            px += 90
+        }
     }
 
 }
@@ -223,3 +313,46 @@ extension ViewController: AVCaptureMetadataOutputObjectsDelegate {
     
 }
 
+
+extension ViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        
+        var offsets: [Int] = []
+        for i in 0...(numButtons-1){
+            offsets.append(i*90)
+        }
+        
+        let currOffset = Int(buttonScrollView.contentOffset.x)
+        var closest = offsets.enumerated().min( by: { abs($0.1 - currOffset) < abs($1.1 - currOffset) } )!
+        if (!settingsSelected && closest.offset == offsets.count-1){
+            closest.element = offsets[offsets.count-2]
+            closest.offset = closest.offset-1
+        }
+        selected = closest.offset
+        buttonScrollView.setContentOffset(CGPoint(x: closest.element, y: 0), animated: true)
+        print("Set selected on scroll to \(selected)")
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        scrollViewDidEndDecelerating(buttonScrollView)
+    }
+    
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        scrollViewDidEndDecelerating(buttonScrollView)
+    }
+    
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        scrollViewDidEndDecelerating(buttonScrollView)
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        scrollViewDidEndDecelerating(buttonScrollView)
+        settingsSelected = false
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        resetButtons()
+        setButtonToSelected(index: selected)
+    }
+}
