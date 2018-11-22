@@ -18,8 +18,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.89999997615814209" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OBe-ms-ZLw">
-                                <rect key="frame" x="162" y="749" width="90" height="90"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="161" y="749" width="90" height="90"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -31,8 +31,8 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hNa-Nw-1mp">
-                                <rect key="frame" x="0.0" y="754" width="414" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="-1" y="754" width="414" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2k7-Mh-6dB" userLabel="settingsButton">
                                         <rect key="frame" x="317" y="10" width="60" height="60"/>
@@ -85,6 +85,22 @@
                                             <action selector="cameraButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GhR-1P-EzH"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yXp-ad-8F3">
+                                        <rect key="frame" x="292" y="10" width="60" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="Calendar"/>
+                                        <connections>
+                                            <action selector="calendarButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Y7M-X1-fkb"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xg8-uF-Kg0">
+                                        <rect key="frame" x="326" y="8" width="60" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="QRCode"/>
+                                        <connections>
+                                            <action selector="qrCodeButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RVf-QI-hb7"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </scrollView>
                         </subviews>
@@ -93,9 +109,11 @@
                     </view>
                     <connections>
                         <outlet property="buttonScrollView" destination="hNa-Nw-1mp" id="Irg-xh-gsI"/>
+                        <outlet property="calendarButton" destination="yXp-ad-8F3" id="e8D-Ns-UKj"/>
                         <outlet property="cameraButton" destination="JIN-NZ-Q2w" id="EGV-0m-FVu"/>
                         <outlet property="choiceLabel" destination="OBe-ms-ZLw" id="lVK-3w-BHg"/>
                         <outlet property="mapButton" destination="dM1-9m-QDC" id="4qS-50-q55"/>
+                        <outlet property="qrCodeButton" destination="Xg8-uF-Kg0" id="lj2-HU-WDh"/>
                         <outlet property="settingsButton" destination="2k7-Mh-6dB" id="w93-zX-fJy"/>
                         <outlet property="transitButton" destination="jxz-VC-svE" id="D5Y-0E-ywQ"/>
                         <outlet property="weatherButton" destination="vT6-l6-I03" id="F2o-IX-0kv"/>
@@ -107,8 +125,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Camera" width="400" height="400"/>
+        <image name="Calendar" width="200" height="200"/>
+        <image name="Camera" width="200" height="200"/>
         <image name="Map" width="400" height="400"/>
+        <image name="QRCode" width="200" height="200"/>
         <image name="Settings" width="392" height="392"/>
         <image name="Transit" width="400" height="400"/>
         <image name="Weather" width="400" height="400"/>

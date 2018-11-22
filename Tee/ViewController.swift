@@ -22,16 +22,24 @@ class ViewController: UIViewController{
     @IBOutlet weak var mapButton: UIButton!
     @IBOutlet weak var weatherButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
+    @IBOutlet weak var qrCodeButton: UIButton!
+    @IBOutlet weak var calendarButton: UIButton!
     @IBOutlet weak var choiceLabel: UILabel!
     @IBOutlet weak var buttonScrollView: UIScrollView!
     
     var buttons: [UIButton] = []
-    let numButtons = 5
+    var numButtons = 7
     var selected = 0
     var prevSelected = 0
     var settingsSelected: Bool = false
     
     
+    @IBAction func calendarButtonClicked(_ sender: Any) {
+        setButtonToSelectedWhenButtonPressed(index: 4)
+    }
+    @IBAction func qrCodeButtonClicked(_ sender: Any) {
+        setButtonToSelectedWhenButtonPressed(index: 5)
+    }
     @IBAction func cameraButtonClicked(_ sender: Any) {
         setButtonToSelectedWhenButtonPressed(index: 0)
     }
@@ -47,7 +55,7 @@ class ViewController: UIViewController{
         setButtonToSelectedWhenButtonPressed(index: 3)
     }
     @IBAction func settingsButtonClicked(_ sender: Any) {
-        setButtonToSelectedWhenButtonPressed(index: 4)
+        setButtonToSelectedWhenButtonPressed(index: 6)
     }
     
     func findPlaces() {
@@ -183,10 +191,11 @@ class ViewController: UIViewController{
         view.bringSubviewToFront(buttonScrollView)
         choiceLabel.layer.cornerRadius = 45
         choiceLabel.layer.masksToBounds = true
-        choiceLabel.layer.borderColor = UIColor.gray.cgColor
+        choiceLabel.layer.borderColor = UIColor.white.cgColor
         choiceLabel.layer.borderWidth = 6
         buttonScrollView.delegate = self
-        buttons = [cameraButton, mapButton, transitButton, weatherButton, settingsButton]
+        buttons = [cameraButton, mapButton, transitButton, weatherButton, calendarButton, qrCodeButton, settingsButton]
+        numButtons = buttons.count
         createButtonScrollView()
         setButtonToSelected(index: 0)
     }
@@ -244,7 +253,7 @@ class ViewController: UIViewController{
         if selected == index {
             return
         }
-        if index == 4 {
+        if index == numButtons-1 {
             settingsSelected = true
         }
         selected = index
