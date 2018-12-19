@@ -22,6 +22,10 @@
 		B03B600621801A6000809FF2 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03B600521801A6000809FF2 /* LocationManager.swift */; };
 		B04DA97F21A668B6006FF2BE /* Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DA97E21A668B6006FF2BE /* Properties.swift */; };
 		B0596A4D21929FC400EDB7BD /* Gmaps-Places-Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0596A4C21929FC400EDB7BD /* Gmaps-Places-Parser.swift */; };
+		B06BD8DD21B254D8006E7D1F /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06BD8DC21B254D8006E7D1F /* WebViewController.swift */; };
+		B06BD8DF21B26E38006E7D1F /* WebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B06BD8D821AE5B03006E7D1F /* WebView.xib */; };
+		B06BD8E221B8E179006E7D1F /* BusStopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06BD8E021B8E179006E7D1F /* BusStopViewController.swift */; };
+		B06BD8E321B8E179006E7D1F /* BusStopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B06BD8E121B8E179006E7D1F /* BusStopViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +67,10 @@
 		B03B600521801A6000809FF2 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		B04DA97E21A668B6006FF2BE /* Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Properties.swift; sourceTree = "<group>"; };
 		B0596A4C21929FC400EDB7BD /* Gmaps-Places-Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gmaps-Places-Parser.swift"; sourceTree = "<group>"; };
+		B06BD8D821AE5B03006E7D1F /* WebView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = WebView.xib; path = Design/WebView.xib; sourceTree = "<group>"; };
+		B06BD8DC21B254D8006E7D1F /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		B06BD8E021B8E179006E7D1F /* BusStopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BusStopViewController.swift; path = Transit/BusStopViewController.swift; sourceTree = "<group>"; };
+		B06BD8E121B8E179006E7D1F /* BusStopViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BusStopViewController.xib; path = Transit/BusStopViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +135,10 @@
 				1C6BADC52154B04800C08D20 /* Info.plist */,
 				1C6BADBD2154B04700C08D20 /* Tee.xcdatamodeld */,
 				B04DA97E21A668B6006FF2BE /* Properties.swift */,
+				B06BD8D821AE5B03006E7D1F /* WebView.xib */,
+				B06BD8DC21B254D8006E7D1F /* WebViewController.swift */,
+				B06BD8E021B8E179006E7D1F /* BusStopViewController.swift */,
+				B06BD8E121B8E179006E7D1F /* BusStopViewController.xib */,
 			);
 			path = Tee;
 			sourceTree = "<group>";
@@ -254,7 +266,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C6BADC42154B04800C08D20 /* LaunchScreen.storyboard in Resources */,
+				B06BD8DF21B26E38006E7D1F /* WebView.xib in Resources */,
 				1C6BADC12154B04800C08D20 /* Assets.xcassets in Resources */,
+				B06BD8E321B8E179006E7D1F /* BusStopViewController.xib in Resources */,
 				1C6BADBC2154B04700C08D20 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -281,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B03B6002216DABF400809FF2 /* Bus.swift in Sources */,
+				B06BD8DD21B254D8006E7D1F /* WebViewController.swift in Sources */,
 				B03B6000216DAA6B00809FF2 /* Transit-BusParser.swift in Sources */,
 				1C6BADB92154B04700C08D20 /* ViewController.swift in Sources */,
 				1C6BADBF2154B04700C08D20 /* Tee.xcdatamodeld in Sources */,
@@ -288,6 +303,7 @@
 				B03B600421758C5600809FF2 /* UPC-Parser.swift in Sources */,
 				1C6BADB72154B04700C08D20 /* AppDelegate.swift in Sources */,
 				B0596A4D21929FC400EDB7BD /* Gmaps-Places-Parser.swift in Sources */,
+				B06BD8E221B8E179006E7D1F /* BusStopViewController.swift in Sources */,
 				B04DA97F21A668B6006FF2BE /* Properties.swift in Sources */,
 				B03B5FFE216DA27800809FF2 /* Transit-StopParser.swift in Sources */,
 			);

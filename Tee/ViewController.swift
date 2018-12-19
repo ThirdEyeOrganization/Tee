@@ -15,6 +15,27 @@ import CoreLocation
 class ViewController: UIViewController{
     // initialize CLLocation
    
+    enum CardState {
+        case expanded
+        case collapsed
+    }
+    
+    var cardViewController:WebViewController!
+    var visualEffectView:UIVisualEffectView!
+    
+    let topHeight: CGFloat = 80
+    var cardHeight:CGFloat = 600
+    let cardHandleAreaHeight:CGFloat = 65
+    var isWebViewOpen:Bool = false
+    
+    var cardVisible = false
+    var nextState:CardState {
+        return cardVisible ? .collapsed : .expanded
+    }
+    
+    var runningAnimations = [UIViewPropertyAnimator]()
+    var animationProgressWhenInterrupted:CGFloat = 0
+    
     let locationManager = CLLocationManager()
     
     @IBOutlet weak var cameraButton: UIButton!
@@ -35,26 +56,34 @@ class ViewController: UIViewController{
     
     
     @IBAction func calendarButtonClicked(_ sender: Any) {
+        killMetadataScanner()
         setButtonToSelectedWhenButtonPressed(index: 4)
     }
     @IBAction func qrCodeButtonClicked(_ sender: Any) {
+        killMetadataScanner()
         setButtonToSelectedWhenButtonPressed(index: 5)
+        initiateMetadataScanner()
     }
     @IBAction func cameraButtonClicked(_ sender: Any) {
+        killMetadataScanner()
         setButtonToSelectedWhenButtonPressed(index: 0)
     }
     @IBAction func transitButtonClicked(_ sender: Any) {
+        killMetadataScanner()
         setButtonToSelectedWhenButtonPressed(index: 2)
         busStop()
     }
     @IBAction func mapButtonClicked(_ sender: Any) {
+        killMetadataScanner()
         setButtonToSelectedWhenButtonPressed(index: 1)
         findPlaces()
     }
     @IBAction func weatherButtonClicked(_ sender: Any) {
+        killMetadataScanner()
         setButtonToSelectedWhenButtonPressed(index: 3)
     }
     @IBAction func settingsButtonClicked(_ sender: Any) {
+        killMetadataScanner()
         setButtonToSelectedWhenButtonPressed(index: 6)
     }
     
@@ -70,6 +99,44 @@ class ViewController: UIViewController{
         
         let placesParser = GmapsPlacesParser()
         placesParser.findPlaces(lat: latString, long: longString)
+        let dict = ["UBC":[49.2611816, -123.2465066]]
+        printLocationsAndDistances(parsedDict: dict)
+    }
+    
+    func printLocationsAndDistances(parsedDict: Dictionary<String, [Double]>){
+        let locManager = LocationManager()
+        var locArr:[String] = locManager.returnLatLong()
+        let currCoord = CLLocation(latitude: Double(locArr[0]) ?? 0, longitude: Double(locArr[1]) ?? 0)
+        for (name, coord) in parsedDict {
+            let placeCoord = CLLocation(latitude: coord[0], longitude: coord[1])
+            let distanceInMeters = currCoord.distance(from: placeCoord)
+            print("\(name) is \(distanceInMeters) meters away and at at angle of \(getBearingBetweenTwoPoints1(point1: currCoord, point2: placeCoord)) degrees")
+        }
+    }
+    
+    func getBearingBetweenTwoPoints1(point1 : CLLocation, point2 : CLLocation) -> Double {
+        
+        let lat1 = degreesToRadians(degrees: point1.coordinate.latitude)
+        let lon1 = degreesToRadians(degrees: point1.coordinate.longitude)
+        
+        let lat2 = degreesToRadians(degrees: point2.coordinate.latitude)
+        let lon2 = degreesToRadians(degrees: point2.coordinate.longitude)
+        
+        let dLon = lon2 - lon1
+        
+        let y = sin(dLon) * cos(lat2)
+        let x = cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(dLon)
+        let radiansBearing = atan2(y, x)
+        
+        return radiansToDegrees(radians: radiansBearing)
+    }
+    
+    func degreesToRadians(degrees : Double) -> Double {
+        return degrees * .pi / 180.0
+    }
+    
+    func radiansToDegrees(radians : Double) -> Double {
+        return radians * 180.0 / .pi
     }
     
     func busStop() {
@@ -113,8 +180,12 @@ class ViewController: UIViewController{
     
     var captureSession = AVCaptureSession()
     
+    var upcval:String = ""
+    var lastLink = ""
+    
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     var qrCodeFrameView: UIView?
+    var captureMetadataOutput: AVCaptureMetadataOutput? = nil
     
     let notification = UINotificationFeedbackGenerator()
     
@@ -135,6 +206,7 @@ class ViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        cardHeight = self.view.frame.height - topHeight
         
         
         // Get the back-facing camera for capturing videos
@@ -153,13 +225,13 @@ class ViewController: UIViewController{
             captureSession.addInput(input)
             
             // Initialize a AVCaptureMetadataOutput object and set it as the output device to the capture session.
-            let captureMetadataOutput = AVCaptureMetadataOutput()
-            captureSession.addOutput(captureMetadataOutput)
+            captureMetadataOutput = AVCaptureMetadataOutput()
+            captureSession.addOutput(captureMetadataOutput!)
             
             // Set delegate and use the default dispatch queue to execute the call back
-            captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-            captureMetadataOutput.metadataObjectTypes = supportedCodeTypes
-            //            captureMetadataOutput.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
+            //captureMetadataOutput.setMetadataObjectsDelegate(nil, queue: DispatchQueue.main)
+            captureMetadataOutput!.metadataObjectTypes = supportedCodeTypes
+            //captureMetadataOutput.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
             
         } catch {
             // If any error occurs, simply print it out and don't continue any more.
@@ -206,6 +278,14 @@ class ViewController: UIViewController{
     }
     
     // MARK: - Helper methods
+    
+    func initiateMetadataScanner(){
+        captureMetadataOutput!.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+    }
+    
+    func killMetadataScanner(){
+        captureMetadataOutput!.setMetadataObjectsDelegate(nil, queue: DispatchQueue.main)
+    }
     
     func launchApp(decodedURL: String) {
         
@@ -309,15 +389,37 @@ extension ViewController: AVCaptureMetadataOutputObjectsDelegate {
             
             if metadataObj.stringValue != nil {
                 let number = Int(metadataObj.stringValue!)
-                if number != nil{
+                if number != nil {
+                    
                     let upcParser = UPCParser()
-                    upcParser.parseUPC(upccode: number!)
+                    let link = upcParser.parseUPC(upccode: number!)
+                    if Int(upcval) != number || lastLink != link{
+                        lastLink = link
+                        if link != "" && verifyUrl(urlString: link) && !isWebViewOpen {
+                            print("the link is"+link)
+                            setupCard(urlStr: link)
+                        }
+                    }
                 }else{
-                    launchApp(decodedURL: metadataObj.stringValue!)
+                    //launchApp(decodedURL: metadataObj.stringValue!)
+                    let link = metadataObj.stringValue!
+                    if link != "" && verifyUrl(urlString: link) && !isWebViewOpen {
+                        print("this is a link"+link)
+                        setupCard(urlStr: link)
+                    }
                 }
                 
             }
         }
+    }
+    
+    func verifyUrl(urlString: String?) -> Bool {
+        if let urlString = urlString {
+            if let url = URL(string: urlString) {
+                return UIApplication.shared.canOpenURL(url)
+            }
+        }
+        return false
     }
     
 }
@@ -363,5 +465,129 @@ extension ViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         resetButtons()
         setButtonToSelected(index: selected)
+    }
+    
+    func setupCard(urlStr:String) {
+        visualEffectView = UIVisualEffectView()
+        visualEffectView.frame = self.view.frame
+        self.view.addSubview(visualEffectView)
+        
+        cardViewController = WebViewController(nibName:"WebView", bundle:nil)
+        self.addChild(cardViewController)
+        self.view.addSubview(cardViewController.view)
+        
+        cardViewController.view.frame = CGRect(x: 0, y: self.view.frame.height - self.cardHandleAreaHeight, width: self.view.bounds.width, height: cardHeight)
+        
+        cardViewController.view.clipsToBounds = true
+        
+        cardViewController.webView.load(URLRequest(url: URL(string: urlStr)!))
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.handleCardTap(recognzier:)))
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(ViewController.handleCardPan(recognizer:)))
+        
+        cardViewController.handleBar.addGestureRecognizer(tapGestureRecognizer)
+        cardViewController.handleBar.addGestureRecognizer(panGestureRecognizer)
+        
+        isWebViewOpen = true
+        
+        animateTransitionIfNeeded(state: nextState, duration: 0.9)
+    }
+    
+    @objc
+    func handleCardTap(recognzier:UITapGestureRecognizer) {
+        //switch recognzier.state {
+        //case .ended:
+            //animateTransitionIfNeeded(state: nextState, duration: 0.9)
+        //default:
+        //    break
+        //}
+    }
+    
+    @objc
+    func handleCardPan (recognizer:UIPanGestureRecognizer) {
+        switch recognizer.state {
+        case .began:
+            startInteractiveTransition(state: nextState, duration: 0.9)
+        case .changed:
+            let translation = recognizer.translation(in: self.cardViewController.handleBar)
+            var fractionComplete = translation.y / cardHeight
+            fractionComplete = cardVisible ? fractionComplete : -fractionComplete
+            updateInteractiveTransition(fractionCompleted: fractionComplete)
+        case .ended:
+            continueInteractiveTransition()
+        default:
+            break
+        }
+    }
+    
+    func animateTransitionIfNeeded (state:CardState, duration:TimeInterval) {
+        if runningAnimations.isEmpty {
+            let frameAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1) {
+                switch state {
+                case .expanded:
+                    self.cardViewController.view.frame.origin.y = self.view.frame.height - self.cardHeight
+                case .collapsed:
+                    self.cardViewController.view.frame.origin.y = self.view.frame.height
+                    self.isWebViewOpen = false
+                    self.visualEffectView.removeFromSuperview()
+                }
+            }
+            
+            frameAnimator.addCompletion { _ in
+                self.cardVisible = !self.cardVisible
+                self.runningAnimations.removeAll()
+            }
+            
+            frameAnimator.startAnimation()
+            runningAnimations.append(frameAnimator)
+            
+            
+            let cornerRadiusAnimator = UIViewPropertyAnimator(duration: duration, curve: .linear) {
+                switch state {
+                case .expanded:
+                    self.cardViewController.view.layer.cornerRadius = 24
+                case .collapsed:
+                    self.cardViewController.view.layer.cornerRadius = 0
+                }
+            }
+            
+            cornerRadiusAnimator.startAnimation()
+            runningAnimations.append(cornerRadiusAnimator)
+            
+            let blurAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1) {
+                switch state {
+                case .expanded:
+                    self.visualEffectView.effect = UIBlurEffect(style: .dark)
+                case .collapsed:
+                    self.visualEffectView.effect = nil
+                }
+            }
+            
+            blurAnimator.startAnimation()
+            runningAnimations.append(blurAnimator)
+            
+        }
+    }
+    
+    func startInteractiveTransition(state:CardState, duration:TimeInterval) {
+        if runningAnimations.isEmpty {
+            animateTransitionIfNeeded(state: state, duration: duration)
+        }
+        for animator in runningAnimations {
+            animator.pauseAnimation()
+            animationProgressWhenInterrupted = animator.fractionComplete
+        }
+    }
+    
+    func updateInteractiveTransition(fractionCompleted:CGFloat) {
+        for animator in runningAnimations {
+            animator.fractionComplete = fractionCompleted + animationProgressWhenInterrupted
+        }
+    }
+    
+    func continueInteractiveTransition (){
+        for animator in runningAnimations {
+            animator.continueAnimation(withTimingParameters: nil, durationFactor: 0)
+        }
     }
 }
